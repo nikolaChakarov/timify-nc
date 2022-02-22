@@ -1,0 +1,123 @@
+#create-modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form.create-form {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        border-radius: .5rem;
+        box-shadow: var(--shadow);
+        font-weight: 600;
+        
+        .icon {
+            color: var(--primary);
+        }
+
+        .input-set {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+    }
+
+    /* select */
+    .custom-select-wrapper {
+        margin-bottom: 1rem;
+
+        .inner-select-wrapper {
+            position: relative;
+        }
+
+        .wisible-wrapper {
+            border: 1px groove #fff;
+            padding: 0.5rem;
+            color: var(--grey);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ul-hidden {
+            position: absolute;
+            background-color: #fff;
+            width: 100%;
+            padding: 0.5rem;
+            top: 0;
+            border: 1px groove #fff;
+            z-index: 10;
+        }
+    }
+
+    /* switch slider */
+	.switch-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+		.switch {
+			position: relative;
+			display: inline-block;
+			width: 4rem;
+			height: 2rem;
+		}
+
+		.switch input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+            background-color: #c00000;
+			-webkit-transition: 0.4s;
+			transition: 0.4s;
+			box-shadow: inset 0px 1px 2px #000;
+		}
+        
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 1.5rem;
+			width: 1.5rem;
+			right: 4px;
+			bottom: 3px;
+			background-color: #fff;
+			-webkit-transition: 0.4s;
+			transition: 0.4s;
+		}
+		input:checked + .slider {
+            background-color: var(--secondary);
+		}
+
+		input:checked + .slider:before {
+			-webkit-transform: translateX(-1.5rem);
+			-ms-transform: translateX(-1.5rem);
+			transform: translateX(-1.7rem);
+		}
+
+		.slider.round {
+			border-radius: 34px;
+		}
+
+		.slider.round:before {
+			border-radius: 50%;
+		}
+	}
+	/* end switch slider */
+}

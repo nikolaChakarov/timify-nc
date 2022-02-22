@@ -1,0 +1,28 @@
+#action {
+    display: flex;
+    flex-direction: column;
+
+    .bttns-wrapper {
+        margin: 0 auto;
+
+        .bttn-custom {
+            margin-right: 1rem;
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+
+        .bttn-reset {
+            background-color: #fff;
+            color: var(--primary);
+        }
+
+        .bttn-del {
+            background-color: #c00000;
+            &:hover {
+                transform: scale(1.1);
+                color: #fff;
+            }
+        }
+    }
+}

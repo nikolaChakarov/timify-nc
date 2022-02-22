@@ -1,0 +1,36 @@
+#app-nav {
+    background-color: var(--primary);
+    margin-bottom: 2rem;
+
+    a {
+        color: #fff;
+        font-weight: 600;
+
+        &:hover {
+            color: var(--secondary);
+        }
+    }
+
+    .ul-menu-list {
+        display: flex;
+        padding: 1rem 2rem;
+    }
+
+    .li-logo {
+        flex: 1;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .li-menu-item {
+        margin-right: 1.5rem;
+     
+
+    }
+}
+
+@media (max-width: 576px) {
+    #app-nav {
+
+    }
+}
