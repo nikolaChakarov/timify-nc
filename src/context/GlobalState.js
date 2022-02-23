@@ -9,6 +9,7 @@ const initState = {
     getPosts: (start, end) => { },
     getSinglePost: (id) => { },
     updatePost: (updatedPost) => { },
+    delPost: (id) => { },
     clearScreen: () => { },
 }
 
@@ -117,6 +118,26 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    /* delete post */
+    const delPost = async (id) => {
+        try {
+            const dbResult = await (await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+                method: 'DELETE',
+
+            }))
+
+            dispatch({
+                type: 'DELETE_POST',
+                payload: id
+            })
+
+            return dbResult;
+
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     /* clear localStorage and the loaded posts on the screen */
     const clearScreen = () => {
         dispatch({
@@ -130,6 +151,7 @@ export const GlobalProvider = ({ children }) => {
         getPosts,
         getSinglePost,
         updatePost,
+        delPost,
         clearScreen
     }}>
         {children}

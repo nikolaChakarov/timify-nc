@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './Message.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
-const Message = ({ message }) => {
-    const [click, setClick] = useState(false);
+const Message = ({ message, showMessage, setShowMessage }) => {
 
     return (
         <div className='container-flui' id='message-el' style={{
-            display: click ? 'none' : ''
+            display: showMessage ? 'flex' : 'none'
         }}>
             <span>{message}</span>
-            <FontAwesomeIcon icon={faXmark} onClick={() => setClick(true)} />
+            <FontAwesomeIcon className='icon' icon={faXmark} onClick={() => setShowMessage(false)} />
         </div>
     )
 }

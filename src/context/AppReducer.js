@@ -18,7 +18,14 @@ const AppReducer = (state, action) => {
             return {
                 ...state,
                 posts: [...state.posts.map(el => el.id === action.payload.id ? action.payload : el)]
-            }
+            };
+
+        case 'DELETE_POST':
+            console.log(action.payload, 'reducer');
+            return {
+                ...state,
+                posts: [...state.posts.filter(el => el.id != action.payload)]
+            };
 
         case 'CLEAR':
             return {

@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import { useNavigate, useParams } from 'react-router-dom';
-
 import './SinglePost.scss';
+
+import Message from '../Message/Message';
+
 
 const SinglePost = () => {
     const navigate = useNavigate();
     const params = useParams();
-    const { getSinglePost, updatePost } = useContext(GlobalContext);
+    const { getSinglePost, updatePost, delPost } = useContext(GlobalContext);
+
+    const [showMessage, setShowMessage] = useState(false);
+    const [message, setMessage] = useState('');
 
     const [post, setPost] = useState({
         title: '',
@@ -27,6 +32,29 @@ const SinglePost = () => {
 
     const updateCurrentPost = async () => {
         let dbRes = await updatePost(post);
+
+        if (dbRes) {
+            setMessage('Update successfully done!');
+            setShowMessage(true);
+
+            setTimeout(() => {
+                navigate('/')
+            }, 2000);
+        }
+    }
+
+    const delCurrentPost = async () => {
+
+        let dbRes = await delPost(params.id);
+
+        if (dbRes) {
+            setMessage('Post successfully deleted!');
+            setShowMessage(true);
+
+            setTimeout(() => {
+                navigate('/')
+            }, 2000);
+        }
     }
 
     const callDb = async () => {
@@ -40,6 +68,11 @@ const SinglePost = () => {
 
     return (
         <div className='container-fluid' id='single-post'>
+            {showMessage && <Message
+                message={message}
+                showMessage={showMessage}
+                setShowMessage={setShowMessage}
+            />}
             <button
                 className='btn bttn-custom'
                 onClick={() => navigate('/')}
@@ -77,7 +110,11 @@ const SinglePost = () => {
                             onClick={updateCurrentPost}
                         >Update</button>
 
-                        <button type='button' className="btn bttn-custom bttn-del" >Delete</button>
+                        <button
+                            type='button'
+                            className="btn bttn-custom bttn-del"
+                            onClick={delCurrentPost}
+                        >Delete</button>
 
                     </section>
                 </form>
