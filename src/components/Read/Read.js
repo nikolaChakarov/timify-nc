@@ -3,7 +3,7 @@ import { GlobalContext } from '../../context/GlobalState';
 import './Read.scss';
 
 const Read = () => {
-    const { readPost } = useContext(GlobalContext);
+    const { getPosts } = useContext(GlobalContext);
 
     return (
         <div className='container-fluid' id='read'>

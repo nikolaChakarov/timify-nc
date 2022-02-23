@@ -1,0 +1,41 @@
+#single-post {
+    padding: 2rem;
+    .single-post-body {
+        display: flex;
+         justify-content: center;
+         align-items: center;
+    }
+
+    h2 {
+        span {
+            font-weight: 800;
+        }
+    
+    }
+
+    form.edit-form {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        border-radius: .5rem;
+        box-shadow: var(--shadow);
+        font-weight: 600;
+        width: 50%;
+        
+        .bttn-del {
+            background-color: #c00000;
+            &:hover {
+                transform: scale(1.05);
+                color: #fff;
+            }
+        }
+
+        .input-set {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+    }
+
+}
