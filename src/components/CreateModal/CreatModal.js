@@ -40,8 +40,6 @@ const CreateModal = ({ setShowCreateModal }) => {
     }
 
     const onCheckboxChange = (e) => {
-        console.log(e.target.checked);
-
         setFormInfo(prev => {
             return {
                 ...prev,

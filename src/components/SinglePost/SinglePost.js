@@ -58,6 +58,15 @@ const SinglePost = () => {
     }
 
     const callDb = async () => {
+        if (params.id > 100) {
+            setMessage('Please, select a post with ID less then 100... for this API :)');
+            setShowMessage(true);
+            setTimeout(() => {
+                navigate('/')
+            }, 4000);
+            return;
+        }
+
         let res = await getSinglePost(params.id);
         setPost({ ...res });
     }

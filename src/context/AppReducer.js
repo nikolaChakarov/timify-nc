@@ -21,7 +21,6 @@ const AppReducer = (state, action) => {
             };
 
         case 'DELETE_POST':
-            console.log(action.payload, 'reducer');
             return {
                 ...state,
                 posts: [...state.posts.filter(el => el.id != action.payload)]

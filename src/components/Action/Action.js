@@ -34,7 +34,7 @@ const Action = () => {
                         return (
                             <li className="li-post" key={i}>
                                 <Link to={`/single-post/${el.id}`}>
-                                    <h3>{el.title}</h3>
+                                    <h3>{el.title} <span>ID: {el.id}</span></h3>
                                     <span>Description: {el.body}</span>
                                     <span>City: {el.city}</span>
                                     <span>Love React: {el['love-react'] ? 'YES' : '...yes'}</span>
