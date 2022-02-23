@@ -8,13 +8,14 @@ const initState = {
     createPost: (dataObj) => { },
     getPosts: (start, end) => { },
     getSinglePost: (id) => { },
+    updatePost: (updatedPost) => { },
     clearScreen: () => { },
 }
 
 export const GlobalContext = createContext(initState);
 
 export const GlobalProvider = ({ children }) => {
-    const [state, dispath] = useReducer(AppReducer, initState);
+    const [state, dispatch] = useReducer(AppReducer, initState);
 
     /* set posts in localStorage */
     useEffect(() => {
@@ -36,7 +37,7 @@ export const GlobalProvider = ({ children }) => {
                 throw new Error();
             }
 
-            dispath({
+            dispatch({
                 type: 'CREATE_POST',
                 payload: dbResult
             });
@@ -59,7 +60,7 @@ export const GlobalProvider = ({ children }) => {
 
             let res = dbResult.slice(-10);
 
-            dispath({
+            dispatch({
                 type: 'READ_POSTS',
                 payload: res
             })
@@ -89,9 +90,36 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    /* update post */
+    const updatePost = async (updatedPost) => {
+        try {
+            const dbResUpdate = await (await fetch(`https://jsonplaceholder.typicode.com/posts/${updatedPost.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedPost)
+            })).json();
+
+            if (!dbResUpdate) {
+                throw new Error();
+            }
+
+            dispatch({
+                type: 'UPDATE_POST',
+                payload: dbResUpdate
+            });
+
+            return dbResUpdate;
+
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     /* clear localStorage and the loaded posts on the screen */
     const clearScreen = () => {
-        dispath({
+        dispatch({
             type: 'CLEAR'
         })
     }
@@ -101,6 +129,7 @@ export const GlobalProvider = ({ children }) => {
         createPost,
         getPosts,
         getSinglePost,
+        updatePost,
         clearScreen
     }}>
         {children}

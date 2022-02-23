@@ -7,7 +7,7 @@ import './SinglePost.scss';
 const SinglePost = () => {
     const navigate = useNavigate();
     const params = useParams();
-    const { getSinglePost } = useContext(GlobalContext);
+    const { getSinglePost, updatePost } = useContext(GlobalContext);
 
     const [post, setPost] = useState({
         title: '',
@@ -25,9 +25,12 @@ const SinglePost = () => {
         });
     }
 
+    const updateCurrentPost = async () => {
+        let dbRes = await updatePost(post);
+    }
+
     const callDb = async () => {
         let res = await getSinglePost(params.id);
-
         setPost({ ...res });
     }
 
@@ -68,7 +71,11 @@ const SinglePost = () => {
                     </label>
 
                     <section className="bttns-wrapper mt-4">
-                        <button type='button' className="btn bttn-custom bttn-update me-3">Update</button>
+                        <button
+                            type='button'
+                            className="btn bttn-custom bttn-update me-3"
+                            onClick={updateCurrentPost}
+                        >Update</button>
 
                         <button type='button' className="btn bttn-custom bttn-del" >Delete</button>
 

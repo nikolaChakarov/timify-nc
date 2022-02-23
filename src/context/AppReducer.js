@@ -13,6 +13,13 @@ const AppReducer = (state, action) => {
                 posts: [...action.payload]
             };
 
+        case 'UPDATE_POST':
+
+            return {
+                ...state,
+                posts: [...state.posts.map(el => el.id === action.payload.id ? action.payload : el)]
+            }
+
         case 'CLEAR':
             return {
                 ...state,
